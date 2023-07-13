@@ -1,6 +1,6 @@
 import Pessoa from "./pessoa";
 import Cargo from "./cargo";
-import IUsuario from "../interfaces/usuario";
+import IUsuario from "./usuario";
 
 class Funcionario extends Pessoa implements IUsuario {
     private salario: number;

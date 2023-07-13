@@ -1,5 +1,5 @@
-import Funcionario from "../classes/funcionario";
-import Cargo from "../classes/cargo";
+import Funcionario from "../models/funcionario";
+import Cargo from "../models/cargo";
 
 const funcionario1 = new Funcionario('123.456.789-00', 'Joaquim', '(88)98888-8888', 62833.00,);
 const cargoGerente = new Cargo('Gerente');

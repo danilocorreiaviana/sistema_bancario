@@ -16,8 +16,8 @@ Esta é uma aplicação console de um sistema bancário, em typescript, desenvol
 
 `npm install --save-dev typescript ts-node`
 
-3. Execute a aplicação desejada no caminho 'src/objects', conforme o exemplo a seguir:
+3. Execute a aplicação desejada dentro da pasta 'src/', conforme o exemplo a seguir:
 
-`npx ts-node src/objects/app1.ts`
+`npx ts-node src/aplicacao1/app1.ts`
 
 
