@@ -22,8 +22,13 @@ class Endereco {
         this.uf = uf;
     }
 
-    public getEndereco(): string {
-        return `${this.logradouro}, ${this.numero} - ${this.cidade}/${this.uf}, CEP: ${this.cep}, Complemento: ${this.complemento}`;
+    public getEndereco(): void {
+        console.log("\nCEP:", this.cep);
+        console.log("Logradouro:", this.logradouro);
+        console.log("Nº:", this.logradouro);
+        console.log("Complemento:", this.complemento);
+        console.log("Cidade:", this.cidade);
+        console.log("Estado:", this.uf + "\n");
     }
 
 }

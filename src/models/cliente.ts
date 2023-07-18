@@ -45,8 +45,13 @@ class Cliente extends Pessoa implements IUsuario {
     }
 
     public listarEndereco(): void {
-        this.enderecos.forEach((endereço) => {
-            console.log(endereço.getEndereco());
+        console.log(`\nCliente: ${this.getNome()}`)
+        console.log(`Cpf: ${this.getCpf()}`)
+        console.log(`Telefone: ${this.getTelefone()}`)
+        console.log(`Vip: ${this.getVip()}\n`)
+        this.enderecos.forEach((endereco, index) => {
+            console.log(`[Endereço ${(index + 1).toString()}]`)
+            endereco.getEndereco();
         });
     }
 
