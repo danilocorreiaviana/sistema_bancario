@@ -22,8 +22,16 @@ abstract class Conta {
         return this.creditos;
     }
 
+    public setCreditos(credito: Credito): void {
+        this.creditos.push(credito);
+    }
+
     public getDebitos(): Debito[] {
         return this.debitos;
+    }
+
+    public setDebitos(debito: Debito): void {
+        this.debitos.push(debito);
     }
 
     public getDataFormatada(d: Date): string {
@@ -42,41 +50,22 @@ abstract class Conta {
         const credito = new Credito(valor, data);
         this.creditos.push(credito);
         const index = this.creditos.length - 1;
-        console.log("*******************************************");
+        console.log("\n*******************************************");
         console.log("Depósito de R$ " + this.creditos[index].getValor().toFixed(2) + " realizado com sucesso!\n" +
             "Data da transação: " + this.getDataFormatada(this.creditos[index].getData()));
         console.log("*******************************************");
     }
 
     public sacar(valor: number) {
-        const saldo = this.verificarSaldo();
-        if (saldo - valor >= 0) {
-            const data = new Date();
-            const debito = new Debito(valor, data);
-            this.debitos.push(debito);
-            const index = this.debitos.length - 1;
-            console.log("*******************************************");
-            console.log("Saque de R$ " + this.debitos[index].getValor().toFixed(2) + " realizado com sucesso!\n" +
-                "Data da transação: " + this.getDataFormatada(this.debitos[index].getData()));
-            ;
-            console.log("*******************************************");
-        } else {
-            console.log('Saldo insuficiente para saque');
-        }
-    }
-
-    public verificarSaldo(): number {
-        const saldoInicial = 0;
-        const saldoCredito = this.creditos.reduce(
-            (total, credito) => total + credito.getValor(),
-            0
-        );
-        const saldoDebito = this.debitos.reduce(
-            (total, debito) => total + debito.getValor(),
-            0
-        );
-        const saldo = saldoInicial + saldoCredito - saldoDebito;
-        return saldo;
+        const data = new Date();
+        const debito = new Debito(valor, data);
+        this.setDebitos(debito);
+        const index = this.getDebitos().length - 1;
+        console.log("*******************************************");
+        console.log("Saque de R$ " + this.getDebitos()[index].getValor().toFixed(2) + " realizado com sucesso!\n" +
+            "Data da transação: " + this.getDataFormatada(this.getDebitos()[index].getData()));
+        ;
+        console.log("*******************************************");
     }
 }
 
