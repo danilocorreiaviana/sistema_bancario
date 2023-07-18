@@ -19,7 +19,9 @@ class Funcionario extends Pessoa implements IUsuario {
     }
 
     public exercerCargo(cargo: Cargo): void {
-        console.log(`O funcionário ${this.getNome()} está exercendo o cargo de ${cargo.getNome()}.`);
+        console.log("*********************************************************************")
+        console.log(`O funcionário ${this.getNome()} está exercendo o cargo de ${cargo.getNome()} do banco.`);
+        console.log("*********************************************************************\n")
     }
 
     autenticar(): boolean {
