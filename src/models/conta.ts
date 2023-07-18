@@ -46,14 +46,21 @@ abstract class Conta {
     }
 
     public depositar(valor: number) {
-        const data = new Date();
-        const credito = new Credito(valor, data);
-        this.creditos.push(credito);
-        const index = this.creditos.length - 1;
-        console.log("\n*******************************************");
-        console.log("Depósito de R$ " + this.creditos[index].getValor().toFixed(2) + " realizado com sucesso!\n" +
-            "Data da transação: " + this.getDataFormatada(this.creditos[index].getData()));
-        console.log("*******************************************");
+        if (valor > 0) {
+            const data = new Date();
+            const credito = new Credito(valor, data);
+            this.creditos.push(credito);
+            const index = this.creditos.length - 1;
+            console.log("\n*******************************************");
+            console.log("Depósito de R$ " + this.creditos[index].getValor().toFixed(2) + " realizado com sucesso!\n" +
+                "Data da transação: " + this.getDataFormatada(this.creditos[index].getData()));
+            console.log("*******************************************");
+        } else {
+            console.log("--------------------------------------------------------------------");
+            console.log("Erro no depósito! O valor de depósito precisa ser maior que R$ 0,00!")
+            console.log("--------------------------------------------------------------------");
+        }
+
     }
 
     public sacar(valor: number) {
