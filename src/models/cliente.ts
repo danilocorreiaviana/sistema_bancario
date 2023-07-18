@@ -2,11 +2,13 @@ import IUsuario from "./usuario";
 import Pessoa from "./pessoa";
 import Endereco from "./endereco";
 import ContaCorrente from './contaCorrente';
+import ContaPoupanca from "./contaPoupanca";
 
 class Cliente extends Pessoa implements IUsuario {
     private vip: boolean;
     private enderecos: Endereco[]
     private contaCorrente: ContaCorrente;
+    private contaPoupanca: ContaPoupanca;
 
     constructor(cpf: string, nome: string, telefone: string, vip: boolean) {
         super(cpf, nome, telefone);
@@ -20,6 +22,14 @@ class Cliente extends Pessoa implements IUsuario {
 
     public setContaCorrente(contaCorrente: ContaCorrente): void {
         this.contaCorrente = contaCorrente;
+    }
+
+    public getContaPoupanca(): ContaPoupanca {
+        return this.contaPoupanca;
+    }
+
+    public setContaPoupanca(contaPoupanca: ContaPoupanca): void {
+        this.contaPoupanca = contaPoupanca;
     }
 
     public getVip(): boolean {
