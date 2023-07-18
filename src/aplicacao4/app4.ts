@@ -2,7 +2,7 @@ import Cliente from "../models/cliente";
 import ContaCorrente from "../models/contaCorrente";
 import ContaPoupanca from "../models/contaPoupanca";
 
-const contaCorrente = new ContaCorrente('1234', 500);
+const contaCorrente = new ContaCorrente('1234', 0);
 const contaPoupanca = new ContaPoupanca('4321');
 
 const cliente = new Cliente('123.456.789-00', 'João Da Silva', '8888888888', true);
@@ -38,7 +38,7 @@ cliente.getContaCorrente().depositar(1000);
 exibirContaCliente(cliente);
 cliente2.getContaPoupanca().depositar(1000)
 exibirContaCliente2(cliente2);
-cliente.getContaCorrente().transferir(contaPoupanca, 1000);
+cliente.getContaCorrente().transferir(contaPoupanca, 500);
 console.log("\nREMETENTE")
 exibirContaCliente(cliente);
 console.log("\nDESTINATÁRIO")
