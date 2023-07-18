@@ -18,7 +18,7 @@ const exibirContaCliente = (contaCliente: Cliente) => {
     console.log('Cliente:', contaCliente.getNome());
     console.log('Conta:', contaCliente.getContaCorrente().getNumero());
     console.log('Tipo:', contaCliente.getContaCorrente().getTipo());
-    console.log('Limite: R$', contaCliente.getContaCorrente().getLimite().toFixed(2));
+    console.log('Limite (crédito): R$', contaCliente.getContaCorrente().getLimite().toFixed(2));
     console.log('Saldo: R$', contaCliente.getContaCorrente().calcularSaldo().toFixed(2));
     console.log('Total: R$', contaCliente.getContaCorrente().getValorTotal().toFixed(2));
 };
