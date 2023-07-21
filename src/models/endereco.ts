@@ -22,14 +22,30 @@ class Endereco {
         this.uf = uf;
     }
 
-    public getEndereco(): void {
-        console.log("\nCEP:", this.cep);
-        console.log("Logradouro:", this.logradouro);
-        console.log("Nº:", this.logradouro);
-        console.log("Complemento:", this.complemento);
-        console.log("Cidade:", this.cidade);
-        console.log("Estado:", this.uf + "\n");
+    public getCep(): string {
+        return this.cep;
+    }
+
+    public getLogradouro(): string {
+        return this.logradouro;
+    }
+
+    public getNumero(): string {
+        return this.numero;
+    }
+
+    public getComplemento(): string {
+        return this.complemento;
+    }
+
+    public getCidade(): string {
+        return this.cidade;
+    }
+
+    public getUf(): string {
+        return this.uf;
     }
 
 }
+
 export default Endereco;

@@ -5,41 +5,31 @@ import ContaPoupanca from "../models/contaPoupanca";
 const contaCorrente = new ContaCorrente('1234', 0);
 const contaPoupanca = new ContaPoupanca('4321');
 
-const cliente = new Cliente('123.456.789-00', 'João Da Silva', '8888888888', true);
-const cliente2 = new Cliente('009.876.543-21', 'Felipe Castro', '8899999999', true);
+const cliente = new Cliente('123.456.789-00', 'João Da Silva', '(88)98878-9888', true);
+const cliente2 = new Cliente('009.876.543-21', 'Felipe Castro', '(88)99979-8999', true);
 
 cliente.setContaCorrente(contaCorrente);
 cliente2.setContaPoupanca(contaPoupanca)
 
-const exibirContaCliente = (contaCliente: Cliente) => {
-    console.log('----------------------------------------------------')
-    console.log("Conta do Cliente 1")
-    console.log('----------------------------------------------------')
-    console.log('Cliente:', contaCliente.getNome());
-    console.log('Conta:', contaCliente.getContaCorrente().getNumero());
-    console.log('Tipo:', contaCliente.getContaCorrente().getTipo());
-    console.log('Limite (crédito): R$', contaCliente.getContaCorrente().getLimite().toFixed(2));
-    console.log('Saldo: R$', contaCliente.getContaCorrente().calcularSaldo().toFixed(2));
-    console.log('Total: R$', contaCliente.getContaCorrente().getValorTotal().toFixed(2));
-};
+const clienteA = cliente.getContaCorrente();
+const clienteB = cliente2.getContaPoupanca();
 
-const exibirContaCliente2 = (contaCliente: Cliente) => {
-    console.log('----------------------------------------------------')
-    console.log("Conta do Cliente 2")
-    console.log('----------------------------------------------------')
-    console.log('Cliente:', contaCliente.getNome());
-    console.log('Conta:', contaCliente.getContaPoupanca().getNumero());
-    console.log('Tipo:', contaCliente.getContaPoupanca().getTipo())
-    console.log('Saldo: R$', contaCliente.getContaPoupanca().calcularSaldo().toFixed(2) + '\n');
-};
+console.log("\n**************************************************************************");
+console.log(clienteA.depositar(1000));
+console.log("**************************************************************************");
+console.log(cliente.exibirContaCorrente());
 
+console.log("\n**************************************************************************");
+console.log(clienteB.depositar(1000));
+console.log("**************************************************************************");
+console.log(cliente2.exibirContaPoupanca());
 
-cliente.getContaCorrente().depositar(1000);
-exibirContaCliente(cliente);
-cliente2.getContaPoupanca().depositar(1000)
-exibirContaCliente2(cliente2);
-cliente.getContaCorrente().transferir(contaPoupanca, 500);
-console.log("\nREMETENTE")
-exibirContaCliente(cliente);
-console.log("\nDESTINATÁRIO")
-exibirContaCliente2(cliente2);
+console.log("\n**************************************************************************");
+console.log(clienteA.transferir(contaPoupanca, 500));
+console.log("**************************************************************************");
+
+console.log("[REMETENTE]")
+console.log(cliente.exibirContaCorrente());
+
+console.log("\n[DESTINATÁRIO]")
+console.log(cliente2.exibirContaPoupanca() + "\n");

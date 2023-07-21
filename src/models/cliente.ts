@@ -16,6 +16,30 @@ class Cliente extends Pessoa implements IUsuario {
         this.enderecos = [];
     }
 
+    public exibirDados(): string {
+        return "\nCPF: " + this.getCpf() +
+            "\nCliente: " + this.getNome() +
+            "\nTelefone: " + this.getTelefone() +
+            "\nVip: " + this.vip;
+    }
+
+    public exibirContaCorrente(): string {
+        return "Cliente: " + this.getNome() +
+            "\nConta: " + this.contaCorrente.getNumero() +
+            "\nTipo: Conta Corrente " +
+            "\nLimite (crédito): R$ " + this.contaCorrente.getLimite().toFixed(2) +
+            "\nSaldo: R$ " + this.contaCorrente.getSaldo().toFixed(2) +
+            "\nTotal: R$ " + this.contaCorrente.getValorTotal().toFixed(2);
+    }
+
+    public exibirContaPoupanca(): string {
+        return "Cliente: " + this.getNome() +
+            "\nConta: " + this.contaPoupanca.getNumero() +
+            "\nTipo: Conta Poupança " +
+            "\nSaldo: R$ " + this.contaPoupanca.getSaldo().toFixed(2) +
+            "\nTotal: R$ " + this.contaPoupanca.getSaldo().toFixed(2);
+    }
+
     public getContaCorrente(): ContaCorrente {
         return this.contaCorrente;
     }
@@ -44,15 +68,21 @@ class Cliente extends Pessoa implements IUsuario {
         this.enderecos.push(endereco);
     }
 
-    public listarEndereco(): void {
-        console.log(`\nCliente: ${this.getNome()}`)
-        console.log(`Cpf: ${this.getCpf()}`)
-        console.log(`Telefone: ${this.getTelefone()}`)
-        console.log(`Vip: ${this.getVip()}\n`)
+    public listarEnderecos() {
+        let enderecos = "";
         this.enderecos.forEach((endereco, index) => {
-            console.log(`[Endereço ${(index + 1).toString()}]`)
-            endereco.getEndereco();
+            enderecos +=
+                "\n[Endereço " + (index + 1) + "]" +
+                "\nCEP: " + endereco.getCep() +
+                "\nLogradouro: " + endereco.getLogradouro() +
+                "\nNº: " + endereco.getNumero() +
+                "\nComplemento: " + endereco.getComplemento() +
+                "\nCidade: " + endereco.getCidade() +
+                "\nEstado: " + endereco.getUf() + "\n";
         });
+
+        return enderecos;
+
     }
 
     autenticar(): boolean {

@@ -14,15 +14,11 @@ abstract class Conta {
         return this.numero;
     }
 
-    public setNumero(numero: string): void {
-        this.numero = numero;
-    }
-
     public getCreditos(): Credito[] {
         return this.creditos;
     }
 
-    public setCreditos(credito: Credito): void {
+    public adicionarCreditos(credito: Credito): void {
         this.creditos.push(credito);
     }
 
@@ -30,7 +26,7 @@ abstract class Conta {
         return this.debitos;
     }
 
-    public setDebitos(debito: Debito): void {
+    public adicionarDebitos(debito: Debito): void {
         this.debitos.push(debito);
     }
 
@@ -45,20 +41,30 @@ abstract class Conta {
         return dataformatada;
     }
 
+    public exibirSucesso(valor: string, dataFormatada: string, operacao: string) {
+        return "Operação de " + operacao + " no valor de R$ " + valor + " realizada com sucesso!\n" +
+            "Data da transação: " + dataFormatada;
+    }
+
+    public exibirTentativa(valor: number, acao: string) {
+        return `Tentou ${acao} R$ ${(valor).toFixed(2)}, mas o valor não é suficiente para a operação!`
+    }
+
+    public exibirErro(operacao: string) {
+        return `Erro de ${operacao}! O valor inserido precisa ser maior que R$ 0,00!`;
+    }
+
     public depositar(valor: number) {
         if (valor > 0) {
             const data = new Date();
             const credito = new Credito(valor, data);
             this.creditos.push(credito);
             const index = this.creditos.length - 1;
-            console.log("\n*******************************************");
-            console.log("Depósito de R$ " + this.creditos[index].getValor().toFixed(2) + " realizado com sucesso!\n" +
-                "Data da transação: " + this.getDataFormatada(this.creditos[index].getData()));
-            console.log("*******************************************");
+            const valorDeposito = this.creditos[index].getValor().toFixed(2);
+            const dataFormatada = this.getDataFormatada(this.creditos[index].getData());
+            return this.exibirSucesso(valorDeposito, dataFormatada, "depósito");
         } else {
-            console.log("--------------------------------------------------------------------");
-            console.log("Erro no depósito! O valor de depósito precisa ser maior que R$ 0,00!")
-            console.log("--------------------------------------------------------------------");
+            return this.exibirErro('depósito');
         }
 
     }
@@ -66,13 +72,11 @@ abstract class Conta {
     public sacar(valor: number) {
         const data = new Date();
         const debito = new Debito(valor, data);
-        this.setDebitos(debito);
+        this.adicionarDebitos(debito);
         const index = this.getDebitos().length - 1;
-        console.log("*******************************************");
-        console.log("Saque de R$ " + this.getDebitos()[index].getValor().toFixed(2) + " realizado com sucesso!\n" +
-            "Data da transação: " + this.getDataFormatada(this.getDebitos()[index].getData()));
-        ;
-        console.log("*******************************************");
+        const valorSaque = this.getDebitos()[index].getValor().toFixed(2);
+        const dataFormatada = this.getDataFormatada(this.getDebitos()[index].getData());
+        return this.exibirSucesso(valorSaque, dataFormatada, "saque");
     }
 }
 

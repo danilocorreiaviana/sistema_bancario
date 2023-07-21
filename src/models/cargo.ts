@@ -8,10 +8,6 @@ class Cargo {
     public getNome(): string {
         return this.nome;
     }
-
-    public setNome(nome: string): void {
-        this.nome = nome;
-    }
 }
 
 export default Cargo;

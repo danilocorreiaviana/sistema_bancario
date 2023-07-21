@@ -11,17 +11,10 @@ class Debito {
         return this.valor;
     }
 
-    public setValor(valor: number): void {
-        this.valor = valor;
-    }
-
     public getData(): Date {
         return this.data;
     }
 
-    public setData(data: Date): void {
-        this.data = data;
-    }
 }
 
 export default Debito;

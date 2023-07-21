@@ -14,14 +14,20 @@ class Funcionario extends Pessoa implements IUsuario {
         return this.salario;
     }
 
-    public setSalario(salario: number): void {
-        this.salario = salario;
+    // public setSalario(salario: number): void {
+    //     this.salario = salario;
+    // }
+
+    public exibirDados(cargo: Cargo) {
+        return "\nCPF: " + this.getCpf() +
+            "\nFuncionário: " + this.getNome() +
+            "\nTelefone: " + this.getTelefone() +
+            "\nSalário: R$ " + this.salario.toFixed(2) +
+            "\nCargo: " + cargo.getNome();
     }
 
-    public exercerCargo(cargo: Cargo): void {
-        console.log("*********************************************************************")
-        console.log(`O funcionário ${this.getNome()} está exercendo o cargo de ${cargo.getNome()} do banco.`);
-        console.log("*********************************************************************\n")
+    public exercerCargo(cargo: Cargo) {
+        return `O funcionário ${this.getNome()} está exercendo o cargo de ${cargo.getNome()} do banco.`;
     }
 
     autenticar(): boolean {

@@ -5,7 +5,6 @@ import Credito from "./credito";
 class ContaCorrente extends Conta {
     private limite: number;
     private saldoinicio: number = 0;
-    private tipo: string = "Conta Corrente"
 
     constructor(numero: string, limite: number) {
         super(numero)
@@ -24,25 +23,17 @@ class ContaCorrente extends Conta {
         return this.calcularSaldo();
     }
 
-    public getTipo(): string {
-        return this.tipo;
-    }
-
     public sacar(valor: number) {
         let limiteTotal = this.getValorTotal();
         if (limiteTotal - valor >= 0) {
             if (valor > 0) {
-                super.sacar(valor);
+                return super.sacar(valor);
             } else {
-                console.log("--------------------------------------------------------------");
-                console.log("Erro no saque! O valor de saque precisa ser maior que R$ 0,00!")
-                console.log("--------------------------------------------------------------");
+                return super.exibirErro('saque');
             }
         }
         else {
-            console.log("----------------------------------------------------------------------------------");
-            console.log("Tentou sacar R$ " + valor.toFixed(2) + ", mas o valor não é suficiente para saque!")
-            console.log("----------------------------------------------------------------------------------");
+            return super.exibirTentativa(valor, 'sacar');
         }
 
     }
@@ -53,24 +44,19 @@ class ContaCorrente extends Conta {
             if (valor > 0) {
                 const data = new Date();
                 const debito = new Debito(valor, data);
-                this.setDebitos(debito);
+                this.adicionarDebitos(debito);
                 const credito = new Credito(valor, data);;
-                contaDestino.setCreditos(credito);
+                contaDestino.adicionarCreditos(credito);
                 const index = this.getDebitos().length - 1;
-                console.log("\n*******************************************");
-                console.log("Transferência de R$ " + this.getDebitos()[index].getValor().toFixed(2) + " realizada com sucesso!\n" +
-                    "Data da transação: " + this.getDataFormatada(this.getDebitos()[index].getData()));
-                console.log("*******************************************");
+                const valorTransferencia = this.getDebitos()[index].getValor().toFixed(2);
+                const dataFormatada = this.getDataFormatada(this.getDebitos()[index].getData());
+                return super.exibirSucesso(valorTransferencia, dataFormatada, 'transferência');
             } else {
-                console.log("-------------------------------------------------------------------------------");
-                console.log("Erro na transferência! O valor de transferência precisa ser maior que R$ 0,00!")
-                console.log("-------------------------------------------------------------------------------");
+                return super.exibirErro('transferência');
             }
 
         } else {
-            console.log("--------------------------------------------------------------------------------------------");
-            console.log("Tentou transferir R$ " + valor.toFixed(2) + ", mas o valor não é suficiente para transferir!")
-            console.log("--------------------------------------------------------------------------------------------");
+            return super.exibirTentativa(valor, 'transferir');
         }
     }
 
@@ -89,9 +75,8 @@ class ContaCorrente extends Conta {
 
     public getValorTotal(): number {
         return this.calcularSaldo() + this.limite;
-
-
     }
 
 }
+
 export default ContaCorrente;

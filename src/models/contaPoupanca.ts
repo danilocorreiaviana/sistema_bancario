@@ -2,7 +2,6 @@ import Conta from "./conta";
 
 class ContaPoupanca extends Conta {
     private saldoinicio: number = 0;
-    private tipo: string = "Conta Poupança"
 
     constructor(numero: string) {
         super(numero)
@@ -10,10 +9,6 @@ class ContaPoupanca extends Conta {
 
     public getSaldo(): number {
         return this.calcularSaldo();
-    }
-
-    public getTipo(): string {
-        return this.tipo;
     }
 
     public calcularSaldo(): number {
@@ -29,4 +24,5 @@ class ContaPoupanca extends Conta {
 
     }
 }
+
 export default ContaPoupanca;
